@@ -1,9 +1,9 @@
 import json
 
-from starter_code.models.store import StoreModel
-from starter_code.models.item import ItemModel
+from models.store import StoreModel
+from models.item import ItemModel
 
-from starter_code.tests.base_test import BaseTest
+from tests.base_test import BaseTest
 
 
 class StoreTest(BaseTest):
@@ -67,6 +67,7 @@ class StoreTest(BaseTest):
                 self.assertEqual(resp.status_code, 200)
                 self.assertDictEqual({'name': 'test',
                                       'items': [{
+                                          'id': 1,
                                           'name': 'test',
                                           'price': 19.99}]},
                                      json.loads(resp.data))
@@ -92,6 +93,7 @@ class StoreTest(BaseTest):
 
                 self.assertEqual(resp.status_code, 200)
                 self.assertDictEqual({'stores': [{'name': 'test',
-                                                  'items': [{'name': 'test',
+                                                  'items': [{'id': 1,
+                                                             'name': 'test',
                                                              'price': 19.99}]}]},
                                      json.loads(resp.data))
