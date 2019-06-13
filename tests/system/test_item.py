@@ -46,7 +46,7 @@ class ItemTest(BaseTest):
                                   headers={'Authorization': self.access_token})
 
                 self.assertEqual(resp.status_code, 200)
-                self.assertDictEqual({'id': 1, 'name': 'test', 'price': 19.99},
+                self.assertDictEqual({'name': 'test', 'price': 19.99},
                                      json.loads(resp.data))
 
     def test_delete_item(self):
@@ -70,7 +70,7 @@ class ItemTest(BaseTest):
                                    data={'price': 19.99, 'store_id': 1})
 
                 self.assertEqual(resp.status_code, 201)
-                self.assertDictEqual({'id': 1, 'name': 'test', 'price': 19.99},
+                self.assertDictEqual({'name': 'test', 'price': 19.99},
                                      json.loads(resp.data))
 
     def test_create_duplicate_item(self):
@@ -96,7 +96,7 @@ class ItemTest(BaseTest):
 
                 self.assertEqual(resp.status_code, 200)
                 self.assertEqual(ItemModel.find_by_name('test').price, 19.99)
-                self.assertDictEqual({'id': 1, 'name': 'test', 'price': 19.99},
+                self.assertDictEqual({'name': 'test', 'price': 19.99},
                                      json.loads(resp.data))
 
     def test_put_update_item(self):
@@ -110,7 +110,7 @@ class ItemTest(BaseTest):
 
                 self.assertEqual(resp.status_code, 200)
                 self.assertEqual(ItemModel.find_by_name('test').price, 20.99)
-                self.assertDictEqual({'id': 1, 'name': 'test', 'price': 20.99},
+                self.assertDictEqual({'name': 'test', 'price': 20.99},
                                      json.loads(resp.data))
 
     def test_item_list(self):
@@ -121,5 +121,5 @@ class ItemTest(BaseTest):
 
                 resp = client.get('/items')
 
-                self.assertDictEqual({'items': [{'id': 1, 'name': 'test', 'price': 19.99}]},
+                self.assertDictEqual({'items': [{'name': 'test', 'price': 19.99}]},
                                      json.loads(resp.data))
